@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2 — Number Systems (Part B) — Teacher Edition</title>
+</head>
+<body style="margin:0;background:#FBFAF7;">
+
+<div style="max-width:900px;margin:0 auto;padding:24px 20px 60px;font-family:'Segoe UI',Verdana,Arial,sans-serif;color:#262019;">
+
+  <!-- Identity strip -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:0 0 18px;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;border-radius:9px;background:#1F6E69;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:13px;">CS</div>
+      <span style="font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:14px;color:#1F6E69;">CGA Computer Science</span>
+    </div>
+    <span style="font-size:12.5px;color:#6B6258;">Cambridge IGCSE 0478 &middot; Teacher edition</span>
+  </div>
+
+  <!-- Hero -->
+  <div style="background:#1F6E69;border-radius:20px;padding:34px 30px;margin:0 0 26px;">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#F2B84B;color:#5C1722;padding:5px 13px;border-radius:999px;font-weight:700;font-size:12.5px;">
+      Topic 1.1 &middot; Number systems &middot; TEACHER EDITION
+    </div>
+    <h1 style="font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;font-weight:700;font-size:30px;color:#FFFFFF;margin:14px 0 6px;">Lesson 2: Addition, Overflow, Shifts &amp; Two's Complement</h1>
+    <p style="font-size:15.5px;line-height:1.5;color:#DCEEEC;margin:0;max-width:600px;">Pacing, prompts, misconceptions and the full answer key for the student edition.</p>
+  </div>
+
+  <!-- At a glance -->
+  <div style="background:#FFFFFF;border:1px solid #E5DFD6;border-radius:14px;padding:20px 22px;margin:0 0 26px;">
+    <p style="font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:16px;margin:0 0 10px;">At a glance</p>
+    <table style="width:100%;border-collapse:collapse;font-size:14.5px;">
+      <tr><td style="padding:4px 0;color:#6B6258;width:150px;">Spec reference</td><td style="padding:4px 0;">1.1.4, 1.1.5, 1.1.6 (Cambridge IGCSE 0478, 2026&ndash;2028)</td></tr>
+      <tr><td style="padding:4px 0;color:#6B6258;">Prior knowledge</td><td style="padding:4px 0;">Lesson 1 &mdash; denary/binary/hex conversions (recapped in the starter)</td></tr>
+      <tr><td style="padding:4px 0;color:#6B6258;">Leads into</td><td style="padding:4px 0;">Topic 1.2 Text, sound and images</td></tr>
+      <tr><td style="padding:4px 0;color:#6B6258;">Suggested length</td><td style="padding:4px 0;">45&ndash;60 minutes &mdash; this lesson packs in four sub-topics, so trim the shift or overflow sections first if time is short</td></tr>
+    </table>
+  </div>
+
+  <!-- Pacing -->
+  <div style="margin:0 0 14px;">
+    <h2 style="font-family:'Trebuchet MS','Segoe UI',Verdana,sans-serif;font-weight:700;font-size:21px;margin:0 0 12px;">Suggested pacing</h2>
+  </div>
+  <div style="overflow-x:auto;margin:0 0 30px;">
+    <table style="border-collapse:collapse;width:100%;font-size:14.5px;">
+      <tr style="background:#1F6E69;color:#FFFFFF;">
+        <th style="text-align:left;padding:9px 14px;font-family:'Trebuchet MS','Segoe UI',sans-serif;">Time</th>
+        <th style="text-align:left;padding:9px 14px;font-family:'Trebuchet MS','Segoe UI',sans-serif;">Student section</th>
+        <th style="text-align:left;padding:9px 14px;font-family:'Trebuchet MS','Segoe UI',sans-serif;">Focus</th>
+      </tr>
+      <tr style="background:#FFFFFF;border-bottom:1px solid #E5DFD6;"><td style="padding:8px 14px;">5 min</td><td style="padding:8px 14px;">Recap</td><td style="padding:8px 14px;">Diagnostic &mdash; if all three are wrong, revisit Lesson 1 before continuing</td></tr>
+      <tr style="background:#E6F6F5;border-bottom:1px solid #E5DFD6;"><td style="padding:8px 14px;">12 min</td><td style="padding:8px 14px;">1. Addition</td><td style="padding:8px 14px;">Model the column method with carries explicitly shown</td></tr>
+      <tr style="background:#FFFFFF;border-bottom:1px solid #E5DFD6;"><td style="padding:8px 14px;">8 min</td><td style="padding:8px 14px;">2. Overflow</td><td style="padding:8px 14px;">Link directly back to the addition method &mdash; overflow is just &ldquo;the answer needed a 9th bit&rdquo;</td></tr>
+      <tr style="background:#E6F6F5;border-bottom:1px solid #E5DFD6;"><td style="padding:8px 14px;">12 min</td><td style="padding:8px 14px;">3. Shifts</td><td style="padding:8px 14px;">Use the &times;2<sup>n</sup> / &divide;2<sup>n</sup> shortcut, but stress it only holds when no bits are lost</td></tr>
+      <tr style="background:#FFFFFF;border-bottom:1px solid #E5DFD6;"><td style="padding:8px 14px;">13 min</td><td style="padding:8px 14px;">4. Two's complement</td><td style="padding:8px 14px;">Hardest section &mdash; do the invert-and-add-1 method together on a whiteboard before Your Turn</td></tr>
+      <tr style="background:#E6F6F5;"><td style="padding:8px 14px;">10&ndash;15 min</td><td style="padding:8px 14px;">Quiz</td><td style="padding:8px 14px;">Self-marking &mdash; questions mix all four sub-topics</td></tr>
+    </table>
+  </div>
+
+  <!-- Misconceptions -->
+  <details style="background:#FFFFFF;border:1px solid #E5DFD6;border-radius:14px;padding:18px 22px;margin:0 0 20px;">
+    <summary style="cursor:pointer;font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:16px;">Common misconceptions to watch for</summary>
+    <ul style="margin:14px 0 0;padding-left:20px;font-size:14.5px;line-height:1.75;color:#3A342C;">
+      <li><strong>Forgetting the carry</strong> in column addition, especially when a column has three 1s to add (two operand bits plus an incoming carry).</li>
+      <li><strong>Thinking overflow just means &ldquo;a big number&rdquo;</strong> rather than specifically &ldquo;the true result exceeds what the register can hold (255 for 8-bit)&rdquo;. Always have them state the register size.</li>
+      <li><strong>Applying the &times;2<sup>n</sup>/&divide;2<sup>n</sup> shortcut blindly for left shifts</strong> without checking whether a 1 was shifted off the end &mdash; this is exactly what the 195 LSL 1 example is designed to expose.</li>
+      <li><strong>Two's complement: forgetting to invert before adding 1</strong> &mdash; a very common slip is adding 1 first. Emphasise the order: invert, <em>then</em> add 1.</li>
+      <li><strong>Reading two's complement as if the MSB were still worth +128</strong> instead of &minus;128 &mdash; this is the single most common exam error on this topic.</li>
+      <li><strong>Believing &minus;128 must have a positive &ldquo;pair&rdquo;</strong> at +128 &mdash; worth stating explicitly that 8-bit two's complement is asymmetric (&minus;128 to +127).</li>
+    </ul>
+  </details>
+
+  <!-- Full answer key -->
+  <details style="background:#FFFFFF;border:1px solid #E5DFD6;border-radius:14px;padding:18px 22px;margin:0 0 20px;" open>
+    <summary style="cursor:pointer;font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:16px;">Full answer key &mdash; recap &amp; Your Turn</summary>
+    <table style="width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 0;">
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">R1. 156 &rarr; 8-bit binary</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">10011100</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">R2. B6 (hex) &rarr; binary</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">10110110</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">R3. 11001100 &rarr; denary</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">204</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">1. 00101101 + 00011110</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">01001011 (75)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">2. 00001011 + 00010100</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">00011111 (31)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">3. 00000101 LSL 3</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">00101000 (40)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">4. 01110001 LSR 3</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">00001110 (14)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">5. &minus;1 &rarr; two's complement</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">11111111</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">6. &minus;128 &rarr; two's complement</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">10000000</td></tr>
+      <tr><td style="padding:6px 10px 6px 0;color:#6B6258;">7. 11100000 &rarr; denary</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">&minus;32</td></tr>
+    </table>
+  </details>
+
+  <details style="background:#FFFFFF;border:1px solid #E5DFD6;border-radius:14px;padding:18px 22px;margin:0 0 30px;" open>
+    <summary style="cursor:pointer;font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:16px;">Full answer key &mdash; end-of-lesson quiz</summary>
+    <table style="width:100%;border-collapse:collapse;font-size:14.5px;margin:14px 0 0;">
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">1. What causes overflow? (MCQ)</td><td style="padding:6px 0;font-weight:700;">Option 1 &mdash; true result &gt; 255</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">2. 00111100 + 00101101</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">01101001 (105)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">3. 210 + 100 &mdash; overflow?</td><td style="padding:6px 0;font-weight:700;">Yes (true result 310 &gt; 255)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">4. 00011001 LSL 2</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">01100100 (100)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">5. 11010000 LSR 3</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">00011010 (26)</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">6. &minus;45 &rarr; two's complement</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">11010011</td></tr>
+      <tr style="border-bottom:1px solid #E5DFD6;"><td style="padding:6px 10px 6px 0;color:#6B6258;">7. 11111000 &rarr; denary</td><td style="padding:6px 0;font-family:'Consolas','Courier New',monospace;font-weight:700;">&minus;8</td></tr>
+      <tr><td style="padding:6px 10px 6px 0;color:#6B6258;">8. Advantage of two's complement? (MCQ)</td><td style="padding:6px 0;font-weight:700;">Option 1 &mdash; same adder circuit handles negatives</td></tr>
+    </table>
+    <p style="margin:14px 0 0;font-size:13px;color:#8A8177;">The student edition self-marks all eight questions on-screen &mdash; this table is for your reference or for marking printed copies.</p>
+  </details>
+
+  <!-- Teaching notes -->
+  <details style="background:#FFFFFF;border:1px solid #E5DFD6;border-radius:14px;padding:18px 22px;margin:0 0 30px;">
+    <summary style="cursor:pointer;font-family:'Trebuchet MS','Segoe UI',sans-serif;font-weight:700;font-size:16px;">Teaching notes &amp; extension ideas</summary>
+    <ul style="margin:14px 0 0;padding-left:20px;font-size:14.5px;line-height:1.75;color:#3A342C;">
+      <li>The Pac-Man &ldquo;kill screen&rdquo; fun fact (Section 2) is genuinely well documented and usually gets a reaction &mdash; worth pausing on if the student is into gaming; it's a real, verifiable 8-bit overflow bug.</li>
+      <li>For strong students, ask <em>why</em> two's complement lets a CPU reuse the same adder circuit for subtraction: subtracting B from A is the same as adding A to the two's complement of B. This is beyond the spec but builds real understanding (see Your Turn Q8 in the quiz).</li>
+      <li>If a student finishes early, challenge them to find the largest and smallest values representable in 8-bit two's complement (127 and &minus;128) and explain why the range is not symmetrical.</li>
+      <li>Keep an eye on pacing &mdash; if the recap reveals gaps from Lesson 1, it's worth spending 5 extra minutes there rather than rushing two's complement, which depends on binary fluency.</li>
+    </ul>
+  </details>
+
+  <div style="text-align:center;margin:0 0 10px;">
+    <button onclick="window.print()" style="background:#FFFFFF;color:#1F6E69;border:2px solid #1F6E69;border-radius:999px;padding:10px 22px;font-weight:600;font-size:14px;cursor:pointer;">Print / save this guide as PDF</button>
+  </div>
+
+  <div style="border-top:1px solid #E5DFD6;padding-top:16px;text-align:center;margin:20px 0 0;">
+    <p style="font-size:12.5px;color:#8A8177;margin:0;">Cambridge IGCSE Computer Science 0478 &middot; Teacher edition &middot; Lesson 2 of 2 on Data Representation</p>
+  </div>
+
+</div>
+</body>
+</html>
